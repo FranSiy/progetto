@@ -1,0 +1,50 @@
+<article>
+    <div class="container">
+    <h2>Login or Create Account</h2>
+    <form #contactForm="ngForm" (ngSubmit)="send()">
+        <div class="mb_3">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" 
+            name="email" 
+            id="email" 
+            [ngClass]="{'is-invalid': email.invalid && email.touched, 
+            'is-valid': email.valid}"
+            [(ngModel)]="frm.email" 
+            #email="ngModel" 
+            pattern=".+\@.+\..+" 
+            required> 
+            <small class="text-danger" *ngIf="email.invalid && email.touched">Invalid email</small>
+        </div>
+        <div class="mb_3">
+            <label for="oggetto">Object</label>
+            <select class="form-select"
+            name="oggetto" 
+            id="oggetto"  
+            [ngClass]="{'is-invalid': oggetto.invalid && oggetto.touched, 
+            'is-valid': oggetto.valid}" 
+            [(ngModel)]="frm.oggetto" 
+            #oggetto="ngModel" 
+            required>
+                <option value="">...</option>
+                <option value="supporto">Tech support</option>
+                <option value="informazioni">Info</option>
+                <option value="problemi">Issues</option>
+            </select>
+            <small class="text-danger" *ngIf="oggetto.invalid && oggetto.touched">Chose an option</small>
+        </div>
+        <div class="mb_3">
+            <label for="msg">Your message:</label>
+            <textarea class="form-control" rows="8" minlength="5"
+            name="msg" 
+            id="msg"  
+            [ngClass]="{'is-invalid': msg.invalid && msg.touched, 
+            'is-valid': msg.valid}" 
+            [(ngModel)]="frm.msg" #msg="ngModel"  
+            required></textarea>
+            <small class="text-danger" *ngIf="msg.invalid && msg.touched">Write something</small>
+        </div>
+        <button type="submit" class="btn btn-lg btn-secondary" 
+        [disabled]="contactForm.invalid">Send</button>
+    </form>
+    </div>
+    </article>

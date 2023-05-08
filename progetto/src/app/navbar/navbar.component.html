@@ -1,0 +1,20 @@
+<nav>
+    <div class="img"><a routerLink="/"><img src="assets/images/logo.negativo.png"></a></div>
+    <input type="checkbox" id="boxcheck">
+    <label for="boxcheck" id="label"></label>
+    <ul>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/login">Login</a>
+        </li>
+        <li><a routerLink="/contatti">Contacts</a>
+        <li><a routerLink="/list">My List</a>
+        </li>
+    </ul>
+
+    <form (ngSubmit)="search()">
+        <div class="search">
+          <input type="text" [(ngModel)]="key" #keyword="ngModel" name="key" required>
+          
+        </div>
+      </form>
+</nav>

@@ -1,0 +1,65 @@
+<article *ngIf="movie">
+<div class="container">
+
+    <h2>Movie Details</h2>
+    <div class="container">
+        <div class="card">
+
+            <div class="poster">
+                <img [src]="posterSize+movie.poster_path" [ngClass]="movie.poster_path==null? 'found': '' ">
+            </div>
+
+            <div class="card-body">
+               <h3>{{movie.title}}</h3>
+               <p class="text-muted">{{movie.release_date | date: "dd/MM/yyyy"}}</p>
+               <p>{{movie.overview}}</p>
+               <h6>Production:</h6>
+               <ul>
+                <li *ngFor="let m of movie.production_companies">{{m.name}}</li>
+               </ul>
+
+               <h6>Genre:</h6>
+               <ul class="genre">
+                <li *ngFor="let g of movie.genres" class="text-muted"> {{g.name}}</li>
+               </ul>
+
+                <div>
+                    <button type="button" class="btn btn-primary" (click)="add(movie)">Add to list</button>
+                </div>
+
+            </div>
+            
+        </div>
+
+        <div class="teaser-box">
+            <h4>Movie teaser:</h4>
+            <iframe width="560" height="315" [src]="youtube2 | safe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    
+    <h3>You might also like...</h3>
+    <div class="row">
+        <div class="col-3" *ngFor="let m of catalogo?.results">
+            <div class="box">
+                <div class="img">
+                    <img [src]="posterSize+m.poster_path" class="card-img-top" [ngClass]="m.poster_path==null? 'found2': 'card-img-top' ">
+                    <a [routerLink]="['/single',m.id]">x</a>
+                </div>
+                <div class="box-info">
+                    <div class="card-body">
+                        <h5 class="card-title">{{m.title}}</h5>
+                        <h6 class="text-muted">{{m.release_date | date: "dd/MM/yyyy"}}</h6> 
+                        </div> 
+                    <div class="button">
+                        <button type="button" class="btn btn-primary">
+                            <a [routerLink]="['/single',m.id]">x</a>
+                        </button>
+                    </div>
+                </div>
+            </div> 
+        </div>    
+    </div>
+    
+</div>
+</article>

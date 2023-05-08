@@ -1,0 +1,107 @@
+<article>
+<div class="container">
+<h2>Login</h2>
+<form #loginForm="ngForm" (ngSubmit)="login()">
+    <div class="mb_3">
+        <label for="user">Username</label>
+        <input type="text" class="form-control" 
+        name="user" 
+        id="user" 
+        [ngClass]="{'is-invalid': user.invalid && user.touched, 
+        'is-valid': user.valid}"
+        [(ngModel)]="frm.user" 
+        #user="ngModel" 
+        required> 
+        <small class="text-danger" *ngIf="user.invalid && user.touched">Username is required</small>
+    </div>
+    <div class="mb_3">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" 
+        name="email" 
+        id="email" 
+        [ngClass]="{'is-invalid': email.invalid && email.touched, 
+        'is-valid': email.valid}"
+        [(ngModel)]="frm.email" 
+        #email="ngModel" 
+        pattern=".+\@.+\..+" 
+        required> 
+        <small class="text-danger" *ngIf="email.invalid && email.touched">Invalid email</small>
+    </div>
+    <div class="mb_3">
+        <label for="password">Password</label>
+        <input type="password" class="form-control"
+        name="password" 
+        id="password" 
+        [ngClass]="{'is-invalid': password.invalid && password.touched, 
+        'is-valid': password.valid}"
+        [(ngModel)]="frm.password" 
+        #password="ngModel" 
+        required>
+        <small class="text-danger" *ngIf="password.invalid && password.touched">Invalid password</small>
+    </div>
+    <button type="submit" class="btn btn-lg btn-secondary" 
+    [disabled]="loginForm.invalid">Login</button>
+</form>
+<hr>
+<h2>Create Account</h2>
+<form #registrationForm="ngForm" (ngSubmit)="create()">
+    <div class="mb_3">
+        <label for="user2">Username</label>
+        <input type="text" class="form-control" 
+        name="user2" 
+        id="user2" 
+        [ngClass]="{'is-invalid': user2.invalid && user2.touched, 
+        'is-valid': user2.valid}"
+        [(ngModel)]="reg.user2" 
+        #user2="ngModel" 
+        minlength="3"
+        maxlength="10"
+        required> 
+        <small class="text-danger" *ngIf="user2.invalid && user2.touched">Username is required, must be min 3 characters and max 8 characters</small>
+    </div>
+    <div class="mb_3">
+        <label for="email2">Email</label>
+        <input type="text" class="form-control" 
+        name="email2" 
+        id="email2" 
+        [ngClass]="{'is-invalid': email2.invalid && email2.touched, 
+        'is-valid': email2.valid}"
+        [(ngModel)]="reg.email2" 
+        #email2="ngModel" 
+        pattern=".+\@.+\..+" 
+        required> 
+        <small class="text-danger" *ngIf="email2.invalid && email2.touched">Invalid email</small>
+    </div>
+    <div class="mb_3">
+        <label for="password2">Password</label>
+        <input type="password" class="form-control"
+        name="password2" 
+        id="password2" 
+        [ngClass]="{'is-invalid': password2.invalid && password2.touched, 
+        'is-valid': password2.valid}"
+        [(ngModel)]="reg.password2" 
+        #password2="ngModel" 
+        minlength="8"
+        required>
+        <small class="text-danger" *ngIf="password2.invalid && password2.touched">Invalid password (min 8 characters)</small>
+    </div>
+    <div class="mb_3">
+        <label for="ripetiPass">Repeat Password</label>
+        <input type="password" class="form-control"
+        name="ripetiPass" 
+        id="ripetiPass" 
+        [ngClass]="{'is-invalid': ripetiPass.invalid && ripetiPass.touched, 
+        'is-valid': ripetiPass.valid}"
+        [(ngModel)]="reg.ripetiPass" 
+        #ripetiPass="ngModel" 
+        minlength="8"
+        required>
+        <small class="text-danger" *ngIf="ripetiPass.invalid && ripetiPass.touched">Your password has to be the same as the above</small>
+    </div>
+    <button type="submit" class="btn btn-lg btn-secondary" 
+    [disabled]="registrationForm.invalid">Create Account</button>
+</form>
+</div>
+</article>
+
+<!-- pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/" -->
